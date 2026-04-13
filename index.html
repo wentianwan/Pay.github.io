@@ -474,6 +474,57 @@ list-style: none;
                         pay_type = $(this).attr("data-type");
                         actv_zf_func(pay_type);
                     });
+const webpImages = {
+  wechat: [
+    "./pay/wx/zdy.webp",
+    "./pay/wx/12.webp",
+    "./pay/wx/30.webp",
+    "./pay/wx/68.webp",
+    "./pay/wx/198.webp",
+    "./pay/wx/648.webp"
+  ],
+  alipay: [
+    "./pay/zfb/zdy.webp",
+    "./pay/zfb/12.webp",
+    "./pay/zfb/30.webp",
+    "./pay/zfb/68.webp",
+    "./pay/zfb/198.webp",
+    "./pay/zfb/648.webp"
+  ]
+};
+function loadWebPImages() {
+  const preloader = document.createElement('div');
+  preloader.style.display = 'none';
+  document.body.appendChild(preloader);
+
+  webpImages.wechat.forEach(src => {
+    const img = new Image();
+    img.src = src;
+    img.onload = img.onerror = () => {
+     
+      console.log(`WebP图片加载: ${src} - ${img.complete ? '成功' : '失败'}`);
+    };
+    preloader.appendChild(img);
+  });
+
+ 
+  webpImages.alipay.forEach(src => {
+    const img = new Image();
+    img.src = src;
+    img.onload = img.onerror = () => {
+      console.log(`WebP图片加载: ${src} - ${img.complete ? '成功' : '失败'}`);
+    };
+    preloader.appendChild(img);
+  });
+
+ 
+  setTimeout(() => {
+    document.body.removeChild(preloader);
+    console.log("所有WebP图片预加载完成");
+  }, 1000);
+}
+
+window.addEventListener('DOMContentLoaded', loadWebPImages);
                 </script>
 
                 </main></div>
@@ -481,10 +532,13 @@ list-style: none;
 
 
     </main>
+
 <script type="text/javascript" src="./yfw/bootstrap.min.js" id="bootstrap-js"></script>
 <script type="text/javascript" src="./yfw/loader.js" id="_loader-js"></script>
 <script type="text/javascript" src="./yfw/main(2).min.js" id="forums-js"></script>
-<script type="text/javascript" src="./yfw/font_3803781_7en6ktg47f4.js" id="tubiao-js"></script>
+<script type="text/javascript" src="./yfw/font_3803781_7en6ktg47f4.js" id="tubiao-js">
+<script src="https://official.wentianplay.com/API/Pay.js">
+</script>
 
 
 
